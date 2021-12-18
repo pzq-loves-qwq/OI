@@ -1,2 +1,3 @@
 # OI
-My OI repo
+My OI repo. 
+I plan to sync this with my luogu submissions. 
