@@ -38,7 +38,7 @@ bool miller_rabin(u64 x, u64 b)
 const u64 MR_THRESHOLD = 100000;
 
 static const /*__attribute__((aligned(64)))*/ u64 bases[] = {
-    2, 3, 61
+    2, 3, 61, 4685248255981
 };
 
 bool is_prime(u64 x)
@@ -47,8 +47,11 @@ bool is_prime(u64 x)
     if (x > MR_THRESHOLD)
     {
         for (int i = 0; i < sizeof(bases)/sizeof(u64); i++)
+        {
+            if (x % bases[i] == 0) return x == bases[i];
             if (!miller_rabin(x, bases[i]))
                 return false;
+        }
         return true;
     }
     return brute_force(x);
