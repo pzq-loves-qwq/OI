@@ -8,7 +8,10 @@ u64 modmult(u64 x, u64 y, u64 p)
 {
     if (p < (u64(1) << 32))
         return x * y % p;
-    long double q = ((long double)x) / p * y + 0.5l;
+
+    using ld = long double;
+    u64 q = ld(x) * ld(y) / ld(p);
+
     u64 r = x * y - p * q;
     if (r >= p) r += p;
     return r;
